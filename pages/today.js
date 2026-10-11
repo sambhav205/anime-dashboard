@@ -155,11 +155,19 @@ function renderTodayPage(container) {
     const legend = AnimeEngine.getLegend();
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const dayName = days[new Date().getDay()];
+    const missionPercent = total ? Math.round(rate * 100) : 100;
+    const missionLabel = total
+      ? `${doneCount}/${total} Missions Cleared`
+      : 'Rest Day · Recover Your Focus';
+    const ringOffset = 201 - (201 * missionPercent / 100);
 
     animeHeroHtml = `
       <div class="aesthetic-hero-card">
         <div class="aesthetic-hero-img-wrap">
           <img src="${legend.image}" alt="${legend.name}" class="aesthetic-hero-img" id="hero-media-img" />
+          <div class="aesthetic-hero-grid" aria-hidden="true"></div>
+          <div class="aesthetic-hero-corner aesthetic-hero-corner--tl" aria-hidden="true"></div>
+          <div class="aesthetic-hero-corner aesthetic-hero-corner--br" aria-hidden="true"></div>
           <div class="aesthetic-hero-light-sweep"></div>
           <div class="aesthetic-hero-aura-pulse" style="background: radial-gradient(circle at 50% 50%, var(--char-glow) 0%, transparent 70%);"></div>
           <canvas id="hero-aura-canvas" class="aesthetic-hero-aura-canvas"></canvas>
@@ -172,18 +180,36 @@ function renderTodayPage(container) {
                 <span>↻</span> Switch Legend
               </button>
             </div>
-            <div class="aesthetic-hero-bottom">
-              <div class="aesthetic-hero-kanji">${legend.kanji}</div>
-              <h2 class="aesthetic-hero-title">${legend.name}</h2>
-              <div class="aesthetic-hero-series">
-                <span>${legend.series}</span>
-                <span class="aesthetic-hero-dot"></span>
-                <span style="color:var(--char-accent)">${legend.title}</span>
-                <span class="aesthetic-hero-dot"></span>
-                <span>${doneCount}/${total} Completed</span>
+            <div class="aesthetic-hero-content">
+              <div class="aesthetic-hero-bottom">
+                <div class="aesthetic-hero-kanji">${legend.kanji}</div>
+                <h2 class="aesthetic-hero-title">${legend.name}</h2>
+                <div class="aesthetic-hero-series">
+                  <span>${legend.series}</span>
+                  <span class="aesthetic-hero-dot"></span>
+                  <span style="color:var(--char-accent)">${legend.title}</span>
+                </div>
+              </div>
+              <div class="aesthetic-mission-panel">
+                <div class="aesthetic-mission-ring" style="--mission-offset:${ringOffset}">
+                  <svg viewBox="0 0 72 72" aria-hidden="true">
+                    <circle class="aesthetic-ring-track" cx="36" cy="36" r="32"></circle>
+                    <circle class="aesthetic-ring-value" cx="36" cy="36" r="32"></circle>
+                  </svg>
+                  <span>${missionPercent}%</span>
+                </div>
+                <div class="aesthetic-mission-copy">
+                  <span class="aesthetic-mission-eyebrow">Today's mission</span>
+                  <strong>${missionLabel}</strong>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="aesthetic-hero-statusbar">
+          <span><i></i>${curStreak || 0} day streak</span>
+          <span>✦ ${legend.auraTitle}</span>
+          <span>Rank: ${curStreak >= 7 ? 'Awakened' : 'Initiate'}</span>
         </div>
       </div>
     `;
