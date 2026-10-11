@@ -1,6 +1,6 @@
 // sw.js
 // Bump on every deploy
-const CACHE_NAME = 'daily-tracker-v4-aesthetic';
+const CACHE_NAME = 'daily-tracker-v5-shell';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -18,14 +18,6 @@ const ASSETS_TO_CACHE = [
   './pages/calendar.js',
   './pages/insights.js',
   './pages/manage.js',
-  './assets/hero-gojo.jpg',
-  './assets/hero-zoro.jpg',
-  './assets/hero-luffy.jpg',
-  './assets/hero-naruto.jpg',
-  './assets/hero-levi.jpg',
-  './assets/hero-tanjiro.jpg',
-  './assets/hero-ichigo.jpg',
-  './assets/anime-banner.jpg',
 ];
 
 self.addEventListener('install', event => {
