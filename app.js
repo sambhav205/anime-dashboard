@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Register service worker for offline PWA (2.8)
   if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js').catch(() => {});
+      navigator.serviceWorker.register('./sw.js?v=6').catch(() => {});
     });
   }
 
