@@ -1,0 +1,937 @@
+/* ═══════════════════════════════════════════════════════════════════
+   anime-theme.css — High-End Aesthetic Anime Theme
+   Cinematic, mature, elegant — rotates with daily anime legend
+   Scoped to body.anime-theme-active
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Global Aesthetic Tokens & Theme Scope ────────────────────── */
+:root {
+  --char-accent: #00f0ff;
+  --char-secondary: #a855f7;
+  --char-glow: rgba(0, 240, 255, 0.35);
+  --char-tint: rgba(0, 240, 255, 0.08);
+}
+
+body.anime-theme-active {
+  --anime-font-heading: 'Cinzel', serif;
+  --anime-font-sub: 'Syne', sans-serif;
+  --anime-font-body: 'Outfit', sans-serif;
+
+  font-family: var(--anime-font-body);
+  background-color: #08090d;
+  background-image: 
+    radial-gradient(circle at 10% 15%, var(--char-tint) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  background-attachment: fixed;
+  color: #f1f5f9;
+  letter-spacing: -0.01em;
+}
+
+/* ── 2. Ambient Atmosphere Canvas ────────────────────────────────── */
+#anime-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+body.anime-theme-active #anime-canvas {
+  opacity: 1;
+}
+
+/* ── 3. Topbar — Cinematic Glassmorphism ─────────────────────────── */
+body.anime-theme-active #topbar {
+  background: rgba(10, 12, 18, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  transition: all 0.3s ease;
+}
+
+body.anime-theme-active #topbar-title {
+  font-family: var(--anime-font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+body.anime-theme-active #topbar-title::before {
+  content: "✦";
+  color: var(--char-accent);
+  font-size: 0.9rem;
+  filter: drop-shadow(0 0 6px var(--char-accent));
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Aesthetic Anime Toggle Button ── */
+.anime-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-family: var(--anime-font-sub);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+}
+
+.anime-toggle-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.anime-toggle-btn.active {
+  background: rgba(18, 22, 33, 0.85);
+  border: 1px solid var(--char-accent);
+  color: #ffffff;
+  box-shadow: 0 0 16px var(--char-glow);
+}
+
+.anime-toggle-btn.active #anime-toggle-status {
+  color: var(--char-accent);
+}
+
+.anime-toggle-btn:not(.active) {
+  background: var(--gray-150);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.anime-toggle-btn:not(.active):hover {
+  background: var(--gray-200);
+  color: var(--text-primary);
+}
+
+/* ── 4. Cinematic Hero Card (Daily Anime Legend) ─────────────────── */
+.aesthetic-hero-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: var(--space-5);
+  background: #0f111a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--char-tint);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.aesthetic-hero-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.7), 0 0 45px var(--char-glow);
+}
+
+.aesthetic-hero-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #000;
+}
+
+@media (min-width: 640px) {
+  .aesthetic-hero-img-wrap {
+    height: 300px;
+  }
+}
+
+.aesthetic-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  animation: cinematicBreath 14s ease-in-out infinite alternate;
+  will-change: transform, filter;
+}
+
+@keyframes cinematicBreath {
+  0% {
+    transform: scale(1.0) translate(0, 0);
+    filter: contrast(1.06) brightness(0.95);
+  }
+  50% {
+    transform: scale(1.05) translate(-0.8%, -1%);
+    filter: contrast(1.12) brightness(1.02);
+  }
+  100% {
+    transform: scale(1.02) translate(0.8%, -0.5%);
+    filter: contrast(1.08) brightness(0.98);
+  }
+}
+
+.aesthetic-hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.aesthetic-hero-aura-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: screen;
+}
+
+.aesthetic-hero-light-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    var(--char-glow) 50%,
+    rgba(255, 255, 255, 0.04) 60%,
+    transparent 100%
+  );
+  background-size: 250% 250%;
+  animation: lightSweepMotion 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: screen;
+}
+
+@keyframes lightSweepMotion {
+  0% { background-position: -100% -100%; opacity: 0; }
+  25% { opacity: 0.7; }
+  50% { background-position: 150% 150%; opacity: 0; }
+  100% { background-position: 150% 150%; opacity: 0; }
+}
+
+.aesthetic-hero-aura-pulse {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.35;
+  animation: auraHeartbeat 4s ease-in-out infinite alternate;
+  mix-blend-mode: color-dodge;
+}
+
+@keyframes auraHeartbeat {
+  0% { opacity: 0.2; transform: scale(0.98); }
+  50% { opacity: 0.55; transform: scale(1.03); }
+  100% { opacity: 0.25; transform: scale(1.0); }
+}
+
+.aesthetic-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 9, 13, 0.15) 0%,
+    rgba(8, 9, 13, 0.65) 55%,
+    rgba(8, 9, 13, 0.98) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.aesthetic-hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.aesthetic-day-badge {
+  font-family: var(--anime-font-sub);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 12, 18, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.aesthetic-day-badge span {
+  color: var(--char-accent);
+}
+
+.aesthetic-cycle-btn {
+  font-family: var(--anime-font-sub);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 12, 18, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.aesthetic-cycle-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--char-accent);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.aesthetic-hero-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.aesthetic-hero-kanji {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--char-accent);
+  opacity: 0.9;
+  text-shadow: 0 0 10px var(--char-glow);
+}
+
+.aesthetic-hero-title {
+  font-family: var(--anime-font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  color: #ffffff;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+}
+
+.aesthetic-hero-series {
+  font-family: var(--anime-font-sub);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.aesthetic-hero-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--char-accent);
+}
+
+/* ── 5. Aesthetic Quote Card ─────────────────────────────────────── */
+.aesthetic-quote-box {
+  background: rgba(15, 17, 26, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--char-accent) !important;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: var(--space-4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.aesthetic-quote-box:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5), 0 0 25px var(--char-tint);
+}
+
+.aesthetic-quote-text {
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #e2e8f0;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.aesthetic-quote-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.aesthetic-quote-author {
+  font-family: var(--anime-font-sub);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--char-accent);
+}
+
+/* ── 6. Streak Hero Transformation ────────────────────────────────── */
+body.anime-theme-active .streak-hero {
+  background: rgba(14, 16, 25, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+body.anime-theme-active .streak-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--char-accent), transparent);
+}
+
+body.anime-theme-active .streak-hero-count {
+  font-family: var(--anime-font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #f8fafc;
+  text-shadow: 0 0 20px var(--char-glow);
+}
+
+body.anime-theme-active .streak-hero-label {
+  font-family: var(--anime-font-sub);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--char-accent);
+}
+
+body.anime-theme-active .streak-hero-best {
+  font-family: var(--anime-font-sub);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+}
+
+body.anime-theme-active .streak-hero-sub {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+/* ── 7. Progress Line Aura ────────────────────────────────────────── */
+body.anime-theme-active .progress-line {
+  background: rgba(255, 255, 255, 0.05);
+  height: 7px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body.anime-theme-active .progress-fill {
+  background: linear-gradient(90deg, var(--char-secondary), var(--char-accent));
+  box-shadow: 0 0 16px var(--char-accent);
+  position: relative;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── 8. Activity Cards (Refined Aesthetic Glass) ─────────────────── */
+body.anime-theme-active .activity-card {
+  background: rgba(14, 16, 24, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+body.anime-theme-active .activity-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--char-tint);
+}
+
+body.anime-theme-active .activity-card.card-done {
+  background: rgba(10, 22, 18, 0.75);
+  border-color: rgba(46, 213, 115, 0.3);
+  box-shadow: 0 6px 20px rgba(46, 213, 115, 0.08);
+}
+
+body.anime-theme-active .activity-name {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #f8fafc;
+}
+
+body.anime-theme-active .done-tap {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.anime-theme-active .done-tap:hover {
+  border-color: var(--char-accent);
+  color: #ffffff;
+  transform: scale(1.06);
+}
+
+body.anime-theme-active .done-tap.done,
+body.anime-theme-active .done-tap.done-tap--done {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.8), rgba(5, 150, 105, 0.9));
+  border-color: #10b981;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.5);
+}
+
+body.anime-theme-active .state-btn {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  font-family: var(--anime-font-sub);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+body.anime-theme-active .state-btn.state-btn--active {
+  border-color: var(--char-accent);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  box-shadow: 0 0 10px var(--char-glow);
+}
+
+/* ── 9. Aesthetic Action Notification (Non-cartoon) ──────────────── */
+.aesthetic-action-toast {
+  position: fixed;
+  bottom: calc(var(--bottomnav-height) + 16px);
+  right: 18px;
+  z-index: 9999;
+  pointer-events: none;
+  animation: toastSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.aesthetic-toast-inner {
+  background: rgba(12, 14, 22, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--char-accent);
+  border-radius: 14px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.aesthetic-toast-kanji {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: var(--char-accent);
+  text-shadow: 0 0 8px var(--char-glow);
+  padding-right: 8px;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.aesthetic-toast-title {
+  font-family: var(--anime-font-sub);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.aesthetic-toast-legend {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  letter-spacing: 0.04em;
+}
+
+.aesthetic-action-toast.fade-out {
+  animation: toastFadeOut 0.35s ease forwards;
+}
+
+@keyframes toastSlideUp {
+  0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toastFadeOut {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(12px) scale(0.95); }
+}
+
+.aesthetic-click-ripple {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--char-accent);
+  transform: translate(-50%, -50%) scale(0.5);
+  pointer-events: none;
+  z-index: 9998;
+  animation: rippleSpread 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes rippleSpread {
+  0% { transform: translate(-50%, -50%) scale(0.4); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+}
+
+/* ── 10. Aesthetic Celebration Modal ─────────────────────────────── */
+.aesthetic-celebrate-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 5, 8, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.aesthetic-celebrate-box {
+  background: rgba(14, 16, 24, 0.95);
+  border: 1px solid var(--char-accent);
+  border-radius: 24px;
+  max-width: 460px;
+  width: 100%;
+  padding: 28px 24px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  animation: scaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.aesthetic-celebrate-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  color: #cbd5e1;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.aesthetic-celebrate-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+.aesthetic-celebrate-kanji {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: var(--char-accent);
+  margin-bottom: 4px;
+}
+
+.aesthetic-celebrate-tag {
+  font-family: var(--anime-font-sub);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin-bottom: 6px;
+}
+
+.aesthetic-celebrate-name {
+  font-family: var(--anime-font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.15;
+}
+
+.aesthetic-celebrate-series {
+  font-family: var(--anime-font-sub);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 16px;
+}
+
+.aesthetic-celebrate-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.aesthetic-celebrate-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aesthetic-celebrate-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(14, 16, 24, 0.7), transparent);
+}
+
+.aesthetic-celebrate-quote {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 2px solid var(--char-accent);
+  padding: 12px 16px;
+  border-radius: 10px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.aesthetic-celebrate-quote p {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: #e2e8f0;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.aesthetic-celebrate-quote span {
+  font-family: var(--anime-font-sub);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.aesthetic-celebrate-sub {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.aesthetic-celebrate-btn {
+  font-family: var(--anime-font-sub);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #0b0c10;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px var(--char-glow);
+  transition: all 0.25s ease;
+}
+
+.aesthetic-celebrate-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+/* ── 11. Calendar & Heatmap Aesthetics ───────────────────────────── */
+body.anime-theme-active .heat-cell--done {
+  background: var(--char-accent) !important;
+  box-shadow: 0 0 8px var(--char-accent) !important;
+}
+
+body.anime-theme-active .heat-cell--partial {
+  background: var(--char-secondary) !important;
+  box-shadow: 0 0 6px var(--char-secondary) !important;
+}
+
+body.anime-theme-active .cal-day-cell.cal-today {
+  border: 1.5px solid var(--char-accent) !important;
+  box-shadow: 0 0 12px var(--char-glow) !important;
+}
+
+/* ── 12. Insights Power & Mastery Card ───────────────────────────── */
+.aesthetic-mastery-card {
+  background: rgba(14, 16, 25, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: var(--space-5);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.aesthetic-mastery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.aesthetic-mastery-title {
+  font-family: var(--anime-font-sub);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.aesthetic-mastery-tier {
+  font-family: var(--anime-font-sub);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--char-accent);
+  color: var(--char-accent);
+}
+
+.aesthetic-mastery-number-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.aesthetic-mastery-value {
+  font-family: var(--anime-font-heading);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 24px var(--char-glow);
+  line-height: 1;
+}
+
+.aesthetic-mastery-label {
+  font-family: var(--anime-font-sub);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--char-accent);
+}
+
+.aesthetic-mastery-ranks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.aesthetic-rank-box {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.aesthetic-rank-label {
+  font-family: var(--anime-font-sub);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+.aesthetic-rank-name {
+  font-family: var(--anime-font-heading);
+  font-size: 0.95rem;
+  color: #f8fafc;
+  letter-spacing: 0.05em;
+}
+
+/* ── 13. Bottom Navigation Aesthetics ────────────────────────────── */
+body.anime-theme-active #bottom-nav {
+  background: rgba(10, 12, 18, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.6);
+}
+
+body.anime-theme-active .nav-btn.active {
+  color: var(--char-accent);
+}
+
+body.anime-theme-active .nav-btn.active .nav-icon {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 8px var(--char-accent));
+}
+
+body.anime-theme-active .nav-btn.active .nav-label {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* ── 14. Keyframe Utilities ───────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #anime-canvas { display: none !important; }
+  .aesthetic-action-toast,
+  .aesthetic-celebrate-box,
+  .aesthetic-click-ripple {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal daily activity tracker — log today, review your consistency over time." />
+  <title>Daily Tracker — Anime Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#141414" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="anime-theme.css" />
+</head>
+<body>
+  <!-- Ambient Anime Canvas (Sakura petals & Chakra motes) -->
+  <canvas id="anime-canvas"></canvas>
+
+  <!-- App root -->
+  <div id="app">
+
+    <!-- ── Top bar ── -->
+    <header id="topbar">
+      <div id="topbar-title">Daily Tracker</div>
+      <div class="topbar-actions">
+        <button id="anime-toggle" class="anime-toggle-btn active" aria-label="Toggle Anime Mode" title="Toggle Anime Mode (Luffy & Naruto)">
+          <span class="anime-toggle-icon">⚡</span>
+          <span class="anime-toggle-text">Anime Mode: <strong id="anime-toggle-status">ON</strong></span>
+        </button>
+        <button id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+          <span id="theme-icon">☀️</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ── Page container (swapped by router) ── -->
+    <main id="page-container"></main>
+
+    <!-- ── Bottom navigation ── -->
+    <nav id="bottom-nav" aria-label="Main navigation">
+      <button class="nav-btn active" data-page="today" aria-label="Today">
+        <span class="nav-icon">◎</span>
+        <span class="nav-label">Today</span>
+      </button>
+      <button class="nav-btn" data-page="calendar" aria-label="Calendar">
+        <span class="nav-icon">⊟</span>
+        <span class="nav-label">Calendar</span>
+      </button>
+      <button class="nav-btn" data-page="insights" aria-label="Insights">
+        <span class="nav-icon">◈</span>
+        <span class="nav-label">Insights</span>
+      </button>
+      <button class="nav-btn" data-page="manage" aria-label="Manage">
+        <span class="nav-icon">≡</span>
+        <span class="nav-label">Manage</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ── Modal overlay (shared) ── -->
+  <div id="modal-overlay" class="hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div id="modal-box">
+      <div id="modal-header">
+        <h2 id="modal-title"></h2>
+        <button id="modal-close" aria-label="Close">✕</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ── Scripts ── -->
+  <script src="db.js"></script>
+  <script src="utils.js"></script>
+  <script src="anime.js"></script>
+  <script src="quotes.js"></script>
+  <script src="pages/today.js"></script>
+  <script src="pages/calendar.js"></script>
+  <script src="pages/insights.js"></script>
+  <script src="pages/manage.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
