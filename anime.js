@@ -148,6 +148,62 @@
     }
   ];
 
+  // A much broader rotation keeps the feature feeling like a daily nudge, not a
+  // seven-card collection. New portraits are resolved only when that character
+  // is shown, so the dashboard never has to load dozens of images at once.
+  const addLegend = (id, name, series, quote, accent, portraitQuery) => ({
+    id, name, series, quote: `“${quote}”`, quoteAuthor: `${name} (${series})`,
+    title: 'DAILY FOCUS', kanji: '集中 · 前進', auraTitle: 'Keep Moving Forward',
+    image: '', portraitQuery, accent, secondary: '#94a3b8',
+    glow: `${accent}66`, bgTint: `${accent}16`,
+    streakTitle: 'Consistency Focus', ranks: ['Begin', 'Steady', 'Focused', 'Relentless', 'Unstoppable']
+  });
+  LEGENDS.push(
+    addLegend('asta', 'Asta', 'Black Clover', 'My magic is never giving up.', '#22c55e', 'Asta Black Clover'),
+    addLegend('yami', 'Yami Sukehiro', 'Black Clover', 'Surpass your limits. Right here, right now.', '#a78bfa', 'Yami Sukehiro Black Clover'),
+    addLegend('thorfinn', 'Thorfinn', 'Vinland Saga', 'You have no enemies.', '#f59e0b', 'Thorfinn Vinland Saga'),
+    addLegend('eren', 'Eren Yeager', 'Attack on Titan', 'If you win, you live. If you lose, you die.', '#84cc16', 'Eren Yeager Attack on Titan'),
+    addLegend('goku', 'Goku', 'Dragon Ball Super', 'Power comes in response to a need, not a desire.', '#fb923c', 'Goku Dragon Ball Super'),
+    addLegend('vegeta', 'Vegeta', 'Dragon Ball Super', 'Push through the pain. Giving up hurts more.', '#6366f1', 'Vegeta Dragon Ball Super'),
+    addLegend('light', 'Light Yagami', 'Death Note', 'You cannot ever win if you are always on the defensive.', '#e5e7eb', 'Light Yagami Death Note'),
+    addLegend('l-lawliet', 'L', 'Death Note', 'Being alone is better than being with the wrong person.', '#cbd5e1', 'L Lawliet Death Note'),
+    addLegend('saitama', 'Saitama', 'One-Punch Man', 'The true power of human beings is that we can change ourselves.', '#facc15', 'Saitama One Punch Man'),
+    addLegend('genos', 'Genos', 'One-Punch Man', 'It is not about whether you can; it is about whether you will.', '#f59e0b', 'Genos One Punch Man'),
+    addLegend('yuji', 'Yuji Itadori', 'Jujutsu Kaisen', 'I do not want to regret the way I lived.', '#f87171', 'Yuji Itadori Jujutsu Kaisen'),
+    addLegend('megumi', 'Megumi Fushiguro', 'Jujutsu Kaisen', 'Start by saving the people in front of you.', '#60a5fa', 'Megumi Fushiguro Jujutsu Kaisen'),
+    addLegend('kakashi', 'Kakashi Hatake', 'Naruto', 'The next generation will always surpass the previous one.', '#a78bfa', 'Kakashi Hatake Naruto'),
+    addLegend('itachi', 'Itachi Uchiha', 'Naruto', 'People live their lives bound by what they accept as correct.', '#ef4444', 'Itachi Uchiha Naruto'),
+    addLegend('rengoku', 'Kyojuro Rengoku', 'Demon Slayer', 'Set your heart ablaze.', '#fb7185', 'Kyojuro Rengoku Demon Slayer'),
+    addLegend('midoriya', 'Izuku Midoriya', 'My Hero Academia', 'Dreams can become reality.', '#34d399', 'Izuku Midoriya My Hero Academia'),
+    addLegend('all-might', 'All Might', 'My Hero Academia', 'The most important thing is to always smile.', '#facc15', 'All Might My Hero Academia'),
+    addLegend('edward', 'Edward Elric', 'Fullmetal Alchemist', 'A lesson without pain is meaningless.', '#f97316', 'Edward Elric Fullmetal Alchemist'),
+    addLegend('roy', 'Roy Mustang', 'Fullmetal Alchemist', 'Nothing is perfect, but the world is there for us.', '#ef4444', 'Roy Mustang Fullmetal Alchemist'),
+    addLegend('hinata', 'Shoyo Hinata', 'Haikyu!!', 'Being weak means there is room to grow.', '#f97316', 'Shoyo Hinata Haikyu'),
+    addLegend('erwin', 'Erwin Smith', 'Attack on Titan', 'The only way to win is to keep moving forward.', '#14b8a6', 'Erwin Smith Attack on Titan'),
+    addLegend('kenma', 'Kenma Kozume', 'Haikyu!!', 'The future belongs to the people who keep trying.', '#facc15', 'Kenma Kozume Haikyu'),
+    addLegend('kageyama', 'Tobio Kageyama', 'Haikyu!!', 'If you are going to hit it, hit it until it breaks.', '#60a5fa', 'Tobio Kageyama Haikyu'),
+    addLegend('killua', 'Killua Zoldyck', 'Hunter x Hunter', 'Keep moving forward until you find what you are looking for.', '#a78bfa', 'Killua Zoldyck Hunter x Hunter'),
+    addLegend('gon', 'Gon Freecss', 'Hunter x Hunter', 'You should enjoy the little detours. That is where you find the important things.', '#22c55e', 'Gon Freecss Hunter x Hunter'),
+    addLegend('netero', 'Isaac Netero', 'Hunter x Hunter', 'You know nothing of the bottomless malice within the human heart.', '#f59e0b', 'Isaac Netero Hunter x Hunter'),
+    addLegend('mob', 'Shigeo Kageyama', 'Mob Psycho 100', 'If everyone is not special, maybe you can be what you want to be.', '#a78bfa', 'Shigeo Kageyama Mob Psycho 100'),
+    addLegend('reigen', 'Arataka Reigen', 'Mob Psycho 100', 'You are the main character of your own life.', '#38bdf8', 'Arataka Reigen Mob Psycho 100'),
+    addLegend('senku', 'Senku Ishigami', 'Dr. Stone', 'The path to science is paved with failures.', '#22c55e', 'Senku Ishigami Dr Stone'),
+    addLegend('boji', 'Bojji', 'Ranking of Kings', 'Even a small step forward is still progress.', '#fbbf24', 'Bojji Ranking of Kings'),
+    addLegend('frieren', 'Frieren', 'Frieren: Beyond Journey’s End', 'The little moments are what make a journey worth remembering.', '#a5b4fc', 'Frieren Sousou no Frieren'),
+    addLegend('maomao', 'Maomao', 'The Apothecary Diaries', 'Curiosity is a strength when you use it wisely.', '#34d399', 'Maomao Kusuriya no Hitorigoto'),
+    addLegend('okabe', 'Rintaro Okabe', 'Steins;Gate', 'There is no end though there is a start in space.', '#f97316', 'Rintaro Okabe Steins Gate'),
+    addLegend('simon', 'Simon', 'Gurren Lagann', 'Believe in the you that believes in yourself.', '#ef4444', 'Simon Gurren Lagann'),
+    addLegend('kamina', 'Kamina', 'Gurren Lagann', 'Do not believe in yourself. Believe in the me that believes in you.', '#f97316', 'Kamina Gurren Lagann'),
+    addLegend('spike', 'Spike Spiegel', 'Cowboy Bebop', 'Whatever happens, happens.', '#38bdf8', 'Spike Spiegel Cowboy Bebop'),
+    addLegend('vash', 'Vash the Stampede', 'Trigun', 'The ticket to the future is always open.', '#facc15', 'Vash the Stampede Trigun'),
+    addLegend('yato', 'Yato', 'Noragami', 'A small wish can become the reason to keep going.', '#60a5fa', 'Yato Noragami'),
+    addLegend('subaru', 'Subaru Natsuki', 'Re:ZERO', 'Starting from zero is still a start.', '#f87171', 'Subaru Natsuki Re Zero'),
+    addLegend('mugen', 'Mugen', 'Samurai Champloo', 'Keep walking your own path, even when it is rough.', '#f97316', 'Mugen Samurai Champloo'),
+    addLegend('sakura', 'Sakura Haruno', 'Naruto', 'A person grows stronger when they have someone to protect.', '#f472b6', 'Sakura Haruno Naruto'),
+    addLegend('jiraiya', 'Jiraiya', 'Naruto', 'A real ninja is one who endures no matter what gets thrown at him.', '#f97316', 'Jiraiya Naruto'),
+    addLegend('gintoki', 'Gintoki Sakata', 'Gintama', 'The best way to live is to keep moving forward.', '#a5b4fc', 'Gintoki Sakata Gintama')
+  );
+
   let _animeActive = true;
   let _soundActive = true;
   let _canvas = null;

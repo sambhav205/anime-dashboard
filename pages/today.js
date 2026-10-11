@@ -159,69 +159,24 @@ function renderTodayPage(container) {
     const missionLabel = total
       ? `${doneCount}/${total} Missions Cleared`
       : 'Rest Day · Recover Your Focus';
-    const ringOffset = 201 - (201 * missionPercent / 100);
-
     animeHeroHtml = `
-      <div class="aesthetic-hero-card">
-        <div class="aesthetic-hero-img-wrap">
-          <img src="${legend.image}" alt="${legend.name}" class="aesthetic-hero-img" id="hero-media-img" />
-          <div class="aesthetic-hero-grid" aria-hidden="true"></div>
-          <div class="aesthetic-hero-corner aesthetic-hero-corner--tl" aria-hidden="true"></div>
-          <div class="aesthetic-hero-corner aesthetic-hero-corner--br" aria-hidden="true"></div>
-          <div class="aesthetic-hero-light-sweep"></div>
-          <div class="aesthetic-hero-aura-pulse" style="background: radial-gradient(circle at 50% 50%, var(--char-glow) 0%, transparent 70%);"></div>
-          <canvas id="hero-aura-canvas" class="aesthetic-hero-aura-canvas"></canvas>
-          <div class="aesthetic-hero-overlay">
-            <div class="aesthetic-hero-top">
-              <div class="aesthetic-day-badge">
-                <span>✦</span> Daily Legend · ${dayName}
-              </div>
-              <button class="aesthetic-cycle-btn" id="anime-cycle-btn" title="Cycle to next anime legend">
-                <span>↻</span> Switch Legend
-              </button>
-            </div>
-            <div class="aesthetic-hero-content">
-              <div class="aesthetic-hero-bottom">
-                <div class="aesthetic-hero-kanji">${legend.kanji}</div>
-                <h2 class="aesthetic-hero-title">${legend.name}</h2>
-                <div class="aesthetic-hero-series">
-                  <span>${legend.series}</span>
-                  <span class="aesthetic-hero-dot"></span>
-                  <span style="color:var(--char-accent)">${legend.title}</span>
-                </div>
-              </div>
-              <div class="aesthetic-mission-panel">
-                <div class="aesthetic-mission-ring" style="--mission-offset:${ringOffset}">
-                  <svg viewBox="0 0 72 72" aria-hidden="true">
-                    <circle class="aesthetic-ring-track" cx="36" cy="36" r="32"></circle>
-                    <circle class="aesthetic-ring-value" cx="36" cy="36" r="32"></circle>
-                  </svg>
-                  <span>${missionPercent}%</span>
-                </div>
-                <div class="aesthetic-mission-copy">
-                  <span class="aesthetic-mission-eyebrow">Today's mission</span>
-                  <strong>${missionLabel}</strong>
-                </div>
-              </div>
-            </div>
+      <section class="anime-spotlight" aria-label="Anime motivation">
+        <video
+          class="anime-spotlight-video"
+          src="assets/Anime%20video.mp4"
+          autoplay muted loop playsinline preload="metadata"
+          aria-label="Anime motivation video"
+        ></video>
+        <div class="anime-spotlight-shade" aria-hidden="true"></div>
+        <div class="anime-spotlight-content">
+          <div class="anime-spotlight-copy">
+            <p class="anime-spotlight-series">${legend.series}</p>
+            <blockquote>${legend.quote}</blockquote>
+            <p class="anime-spotlight-name">— ${legend.name}</p>
           </div>
+          <button class="anime-spotlight-next" id="anime-cycle-btn" title="Show another character" aria-label="Show another character">↻</button>
         </div>
-        <div class="aesthetic-hero-statusbar">
-          <span><i></i>${curStreak || 0} day streak</span>
-          <span>✦ ${legend.auraTitle}</span>
-          <span>Rank: ${curStreak >= 7 ? 'Awakened' : 'Initiate'}</span>
-        </div>
-      </div>
-    `;
-
-    animeQuoteHtml = `
-      <div class="aesthetic-quote-box">
-        <p class="aesthetic-quote-text">${legend.quote}</p>
-        <div class="aesthetic-quote-footer">
-          <span class="aesthetic-quote-author">— ${legend.quoteAuthor}</span>
-          <span style="font-size:0.75rem;color:var(--char-accent);font-family:var(--anime-font-sub);letter-spacing:0.1em">${legend.auraTitle}</span>
-        </div>
-      </div>
+      </section>
     `;
   }
 

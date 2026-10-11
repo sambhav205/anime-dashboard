@@ -213,12 +213,13 @@ body.anime-theme-active #topbar-title::before {
 }
 
 .aesthetic-hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   position: absolute;
-  inset: 0;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
   z-index: 1;
+  border: 0;
+  pointer-events: none;
 }
 
 .aesthetic-hero-aura-canvas {
@@ -356,7 +357,7 @@ body.anime-theme-active #topbar-title::before {
 }
 
 .aesthetic-mission-panel {
-  min-width: 156px;
+  min-width: 138px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -368,12 +369,6 @@ body.anime-theme-active #topbar-title::before {
   backdrop-filter: blur(12px);
 }
 
-.aesthetic-mission-ring { position: relative; width: 48px; height: 48px; flex: 0 0 auto; }
-.aesthetic-mission-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-.aesthetic-mission-ring circle { fill: none; stroke-width: 5; }
-.aesthetic-ring-track { stroke: rgba(255,255,255,.14); }
-.aesthetic-ring-value { stroke: var(--char-accent); stroke-linecap: round; stroke-dasharray: 201; stroke-dashoffset: var(--mission-offset); filter: drop-shadow(0 0 4px var(--char-glow)); transition: stroke-dashoffset .8s ease; }
-.aesthetic-mission-ring span { position: absolute; inset: 0; display: grid; place-items: center; font: 800 .62rem var(--anime-font-sub); color: #fff; }
 .aesthetic-mission-copy { display: grid; gap: 3px; min-width: 0; }
 .aesthetic-mission-eyebrow { font: 700 .53rem var(--anime-font-sub); color: var(--char-accent); letter-spacing: .13em; text-transform: uppercase; }
 .aesthetic-mission-copy strong { font: 700 .64rem/1.3 var(--anime-font-sub); color: #f8fafc; letter-spacing: .04em; text-transform: uppercase; }
@@ -431,7 +426,6 @@ body.anime-theme-active #topbar-title::before {
   .aesthetic-hero-title { font-size: 1.48rem; }
   .aesthetic-hero-series { font-size: .62rem; letter-spacing: .09em; }
   .aesthetic-mission-panel { min-width: 126px; gap: 7px; padding: 7px; }
-  .aesthetic-mission-ring { width: 40px; height: 40px; }
   .aesthetic-mission-copy strong { font-size: .55rem; }
   .aesthetic-hero-statusbar { overflow-x: auto; justify-content: flex-start; font-size: .52rem; }
 }
@@ -580,6 +574,54 @@ body.anime-theme-active .activity-card.card-done {
   background: rgba(10, 22, 18, 0.75);
   border-color: rgba(46, 213, 115, 0.3);
   box-shadow: 0 6px 20px rgba(46, 213, 115, 0.08);
+}
+
+/* ── 5. Focused character quote ──────────────────────────────────────── */
+.anime-spotlight {
+  position: relative;
+  isolation: isolate;
+  min-height: 238px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--char-accent) 50%, #334155);
+  border-radius: 18px;
+  background: #09090b;
+  box-shadow: 0 12px 36px rgba(0,0,0,.26);
+}
+.anime-spotlight-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+  opacity: .94;
+}
+.anime-spotlight-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(9,9,11,.78), rgba(9,9,11,.34) 62%, rgba(9,9,11,.12));
+}
+.anime-spotlight-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: 238px;
+  padding: 28px 60px 28px 28px;
+}
+.anime-spotlight-copy { max-width: 700px; padding: 13px 16px; border-left: 3px solid var(--char-accent); background: rgba(9,9,11,.48); text-shadow: 0 2px 8px rgba(0,0,0,.9); }
+.anime-spotlight-series { margin: 0 0 6px; color: var(--char-accent); font: 700 .65rem var(--anime-font-sub); letter-spacing: .13em; text-transform: uppercase; }
+.anime-spotlight blockquote { margin: 0; color: #f8fafc; font: 700 clamp(1rem, 2.1vw, 1.3rem)/1.4 var(--anime-font-main); }
+.anime-spotlight-name { margin: 8px 0 0; color: #cbd5e1; font: 600 .78rem var(--anime-font-sub); }
+.anime-spotlight-next { position: absolute; top: 16px; right: 16px; width: 33px; height: 33px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: rgba(9,9,11,.6); color: #f8fafc; font-size: 1.2rem; cursor: pointer; }
+.anime-spotlight-next:hover { color: var(--char-accent); border-color: var(--char-accent); }
+@media (max-width: 520px) {
+  .anime-spotlight, .anime-spotlight-content { min-height: 205px; }
+  .anime-spotlight-content { padding: 22px 49px 22px 18px; align-items: center; }
+  .anime-spotlight-copy { padding: 10px 12px; }
+  .anime-spotlight blockquote { font-size: .93rem; }
+  .anime-spotlight-series { font-size: .56rem; }
 }
 
 body.anime-theme-active .activity-name {
