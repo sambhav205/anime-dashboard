@@ -7,7 +7,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(?:css|js|jpg|png)",
+      "source": "/(.*)\\.(css|js|jpg|png)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
